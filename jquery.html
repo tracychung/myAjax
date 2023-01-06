@@ -57,8 +57,10 @@
     console.log(response);
     let str = ''
     response.entry.forEach((item) => {
+      if(idx<10){
         str += `<li>${item.author.name}</li>`;
-        console.log(item.author.name)
+      }
+      console.log(item.author.name)
     })
     console.log(str)
     //let ul=document.getElementsByTagName('ul');
