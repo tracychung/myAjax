@@ -7,6 +7,16 @@
     <title>Fetch</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+        li{
+             padding:5px 2px ;
+             border:1px solid lightgreen;
+             margin-top:-1px;
+         }
+         li:hover{
+             background-color: lightcyan;
+         }
+     </style>
 </head>
 <body>
     <h1 class="header">Fetch</h1>
@@ -25,8 +35,31 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
+    fetch('https://kktix.com/events.json',{method:'get'}) //get方式不會改變伺服器的資料 post是貼上可能會
+    .then(function(response){
+    console.log(response)
+    //回傳是josn時
+    return response.json()    
+    //回傳是text時
+    //return response.text()
 
-
+})
+.then(function(data){ 
+	
+    console.log(data)
+    let str=''
+     data.entry.forEach((item)=>{
+            str+=`<li>${item.author.name}</li>`;
+            console.log(item.author.name)
+        })
+        console.log(str)
+        //let ul=document.getElementsByTagName('ul');
+        let ul=document.querySelector('ul');
+        ul.innerHTML=str;
+})
+.catch(function(err){
+    //error
+})
     //建立回呼函式(call back function)來處理回應時的各項行為
 
 
